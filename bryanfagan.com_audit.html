@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Website Audit: bryanfagan.com | Cappio</title>
+<style>
+  @page { size: A4; margin: 0.75in; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; color: #1a1a1a; line-height: 1.6; background: #fff; }
+  .page-break { page-break-before: always; }
+
+  /* Header */
+  .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid #e8491d; padding-bottom: 16px; margin-bottom: 32px; }
+  .header img { height: 56px; width: auto; }
+  .header .date { font-size: 14px; color: #666; }
+
+  /* Title */
+  .report-title { font-size: 28px; font-weight: 700; color: #1a1a1a; margin-bottom: 4px; }
+  .report-subtitle { font-size: 16px; color: #666; margin-bottom: 32px; }
+
+  /* Score Card */
+  .score-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 32px; }
+  .score-card { border-radius: 8px; padding: 16px; text-align: center; }
+  .score-card .num { font-size: 36px; font-weight: 700; }
+  .score-card .label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .card-red { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
+  .card-orange { background: #fff7ed; color: #ea580c; border: 1px solid #fed7aa; }
+  .card-yellow { background: #fefce8; color: #ca8a04; border: 1px solid #fef08a; }
+  .card-blue { background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; }
+
+  /* Sections */
+  h2 { font-size: 20px; color: #e8491d; border-bottom: 2px solid #e8491d; padding-bottom: 6px; margin: 28px 0 16px 0; }
+  h3 { font-size: 16px; color: #1a1a1a; margin: 18px 0 8px 0; }
+
+  /* Tables */
+  table { width: 100%; border-collapse: collapse; margin: 12px 0 20px 0; font-size: 13px; }
+  th { background: #f8f8f8; text-align: left; padding: 8px 10px; border-bottom: 2px solid #ddd; font-weight: 600; }
+  td { padding: 7px 10px; border-bottom: 1px solid #eee; word-break: break-all; }
+  tr:nth-child(even) { background: #fafafa; }
+
+  /* Tags */
+  .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; margin-right: 4px; }
+  .tag-critical { background: #dc2626; color: #fff; }
+  .tag-high { background: #ea580c; color: #fff; }
+  .tag-medium { background: #ca8a04; color: #fff; }
+  .tag-low { background: #2563eb; color: #fff; }
+
+  /* Callout */
+  .callout { background: #fef2f2; border-left: 4px solid #dc2626; padding: 12px 16px; margin: 12px 0; border-radius: 0 6px 6px 0; font-size: 14px; }
+  .callout-orange { background: #fff7ed; border-left-color: #ea580c; }
+  .callout-blue { background: #eff6ff; border-left-color: #2563eb; }
+
+  /* Ad cards */
+  .ad-card { border: 1px solid #e5e7eb; border-radius: 8px; padding: 14px; margin: 10px 0; }
+  .ad-card .headline { font-weight: 700; font-size: 15px; color: #1a0dab; }
+  .ad-card .url { font-size: 12px; color: #006621; }
+  .ad-card .desc { font-size: 13px; color: #444; margin-top: 4px; }
+  .ad-card .meta { font-size: 11px; color: #999; margin-top: 6px; }
+
+  /* Footer */
+  .footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid #ddd; font-size: 11px; color: #999; text-align: center; }
+
+  ul { margin-left: 20px; margin-bottom: 12px; }
+  li { margin-bottom: 4px; font-size: 14px; }
+  p { font-size: 14px; margin-bottom: 10px; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <img src="data:image/png;base64,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" alt="Cappio" style="height:56px; width:auto;">
+  <div class="date">Audit Date: February 28, 2026</div>
+</div>
+
+<!-- TITLE -->
+<div class="report-title">Website Intelligence Report</div>
+<div class="report-subtitle">bryanfagan.com &mdash; Law Office of Bryan Fagan, PLLC</div>
+
+<!-- SCORE CARDS -->
+<div class="score-grid">
+  <div class="score-card card-red">
+    <div class="num">185</div>
+    <div class="label">Pages Crawled</div>
+  </div>
+  <div class="score-card card-orange">
+    <div class="num">15</div>
+    <div class="label">Canonical Conflicts</div>
+  </div>
+  <div class="score-card card-yellow">
+    <div class="num">11</div>
+    <div class="label">Missing H1 Tags</div>
+  </div>
+  <div class="score-card card-blue">
+    <div class="num">10</div>
+    <div class="label">Active Google Ads</div>
+  </div>
+</div>
+
+<!-- EXECUTIVE SUMMARY -->
+<h2>Executive Summary</h2>
+<p>The Law Office of Bryan Fagan operates a 185-page website focused on family law, estate planning, criminal defense, and guardianship services across the Houston/DFW Texas market. The site is actively supported by paid advertising through Google Ads (managed by Palms Media LLC) with 10 currently running ad creatives.</p>
+<p>This audit identified <strong>critical technical SEO issues</strong> that are likely undermining both organic search performance and paid ad ROI. The most severe finding is a <strong>broken homepage title tag</strong> (827 characters of corrupted code), combined with duplicate homepage indexing, missing security headers across all 185 pages, and multiple pages where ad spend is driving traffic to technically flawed landing pages.</p>
+
+<!-- CRITICAL: HOMEPAGE -->
+<h2><span class="tag tag-critical">CRITICAL</span> Homepage Issues</h2>
+
+<h3>Broken Title Tag (827 characters)</h3>
+<div class="callout">
+  The homepage title tag is severely corrupted. Instead of the intended ~50-character title, it renders as an 827-character string filled with repeated "ionicons-v5-e" text &mdash; a clear sign of a broken icon font library leaking into the &lt;title&gt; element.
+</div>
+<p><strong>What Google sees:</strong></p>
+<p style="font-family:monospace; font-size:12px; background:#f5f5f5; padding:10px; border-radius:4px; word-break:break-all;">Bryan Fagan Law: Texas Family &amp; Estate Attorneyionicons-v5-eionicons-v5-eionicons-v5-e... (repeats 50+ times)</p>
+<p><strong>Impact:</strong> Google may truncate or replace this title entirely in search results, drastically reducing click-through rates for your most important page.</p>
+
+<h3>Duplicate Homepage</h3>
+<p>Both <code>https://www.bryanfagan.com/</code> and <code>https://bryanfagan.com/</code> return identical content (42,775 words each). The canonical tag points to the non-www version, but Google is indexing both, splitting authority between them.</p>
+
+<h3>Page Bloat</h3>
+<table>
+  <tr><th>Metric</th><th>Homepage Value</th><th>Recommended</th></tr>
+  <tr><td>Page Size</td><td><strong>942 KB</strong></td><td>&lt; 200 KB</td></tr>
+  <tr><td>Word Count</td><td><strong>42,775</strong></td><td>1,000 - 3,000</td></tr>
+  <tr><td>Internal Links</td><td><strong>675</strong></td><td>&lt; 100</td></tr>
+  <tr><td>External Links</td><td><strong>47</strong></td><td>&lt; 20</td></tr>
+</table>
+<p>At nearly 1MB and 42,000+ words, the homepage is <strong>14x larger</strong> than recommended. This hurts load time, Core Web Vitals, and makes it impossible for Google to determine the page's primary focus.</p>
+
+<!-- HIGH: SITE-WIDE -->
+<h2><span class="tag tag-high">HIGH</span> Site-Wide SEO Issues</h2>
+
+<h3>Missing H1 Tags &mdash; 11 Pages</h3>
+<p>Key pages have no H1 heading, making it unclear to search engines what they're about:</p>
+<table>
+  <tr><th>Page</th></tr>
+  <tr><td>/about-us/lobf-cares/</td></tr>
+  <tr><td>/texas-fresh-guide/</td></tr>
+  <tr><td>/affidavit-of-heirship-complete-e-course/</td></tr>
+  <tr><td>/about-us/areas-we-serve/</td></tr>
+  <tr><td>/resources/</td></tr>
+  <tr><td>/resources/alimony-101/</td></tr>
+  <tr><td>/resources/webinar/</td></tr>
+  <tr><td>/resources/domestic-violence-101/</td></tr>
+  <tr><td>/resources/costpamphlet/</td></tr>
+  <tr><td>/resources/custody-101/</td></tr>
+  <tr><td>/video-center/guardianship/...</td></tr>
+</table>
+
+<h3>Multiple H1 Tags &mdash; 15+ Pages</h3>
+<p>Pages should have exactly one H1. These pages have 2-3:</p>
+<table>
+  <tr><th>Page</th><th>H1 Count</th><th>Primary H1</th></tr>
+  <tr><td>/resources/diydivorce</td><td><strong>3</strong></td><td>"$147/mo."</td></tr>
+  <tr><td>/about-us/</td><td>2</td><td>"About Us"</td></tr>
+  <tr><td>/family-law/child-support-texas/</td><td>2</td><td>"Texas Child Support Attorney"</td></tr>
+  <tr><td>/guardianship/</td><td>2</td><td>"I need a Guardianship Attorney in Texas"</td></tr>
+  <tr><td>/criminal-law/dwi-dui/</td><td>2</td><td>"DWI/DUI"</td></tr>
+  <tr><td>/criminal-law/robbery/</td><td>2</td><td>"Robbery"</td></tr>
+  <tr><td>/criminal-law/homicide/</td><td>2</td><td>"Homicide"</td></tr>
+</table>
+
+<h3>Canonical URL Conflicts &mdash; 15 Pages</h3>
+<div class="callout callout-orange">
+  15 pages have canonical tags pointing to different URLs than the page itself. This tells Google to ignore the page you want ranked and index a different one instead.
+</div>
+<table>
+  <tr><th>Page URL</th><th>Canonical Points To</th></tr>
+  <tr><td>/family-law/texas-child-custody-attorney/</td><td>/2024/11/interstate-custody-as-it-relates-to-texas-divorc/</td></tr>
+  <tr><td>/texas-fresh-guide/</td><td>/texas-fresh-guide-ppc/</td></tr>
+  <tr><td>/family-law/all-family-law.../gestational-agreement/</td><td>/adoption/gestational-agreement/</td></tr>
+  <tr><td>/about-us/areas-we-serve/tomball/</td><td>/about-us/.../family-law-attorneys-in-tomball-texas-video/</td></tr>
+  <tr><td>/about-us/areas-we-serve/conroe/</td><td>/about-us/.../family-law-attorneys-in-conroe-texas/</td></tr>
+  <tr><td>/about-us/areas-we-serve/spring/</td><td>/about-us/.../family-law-attorneys-in-spring-texas/</td></tr>
+  <tr><td>/about-us/areas-we-serve/porter/</td><td>/about-us/.../family-law-attorneys-in-porter-texas/</td></tr>
+  <tr><td>/resources/diydivorce</td><td>https://www.texasdivorcelaw.net/vsl1694057320598</td></tr>
+</table>
+<p>The <code>/resources/diydivorce</code> canonical is especially concerning &mdash; it points to an entirely different domain (<code>texasdivorcelaw.net</code>), transferring all SEO value away from bryanfagan.com.</p>
+
+<!-- MEDIUM: PERFORMANCE -->
+<div class="page-break"></div>
+<h2><span class="tag tag-medium">MEDIUM</span> Performance &amp; Page Weight</h2>
+
+<h3>Slowest Pages</h3>
+<table>
+  <tr><th>Page</th><th>Response Time</th></tr>
+  <tr><td>/video-center</td><td><strong>15.9 seconds</strong></td></tr>
+  <tr><td>/about-us/.../houston-child-custody/</td><td>13.7 seconds</td></tr>
+  <tr><td>/about-us/.../atascocita/</td><td>12.5 seconds</td></tr>
+  <tr><td>/about-us/.../porter/</td><td>12.5 seconds</td></tr>
+  <tr><td>/about-us/.../child-custody-attorneys-in-tomball-texas/</td><td>12.4 seconds</td></tr>
+  <tr><td>/criminal-law/homicide/</td><td>12.2 seconds</td></tr>
+  <tr><td>/about-us/.../huffman/</td><td>12.2 seconds</td></tr>
+  <tr><td>/about-us/.../spring/</td><td>12.1 seconds</td></tr>
+</table>
+<p><strong>Average site response time: 4.8 seconds.</strong> Google recommends under 2 seconds. 8 pages take over 10 seconds to load.</p>
+
+<h3>Largest Pages by Content</h3>
+<table>
+  <tr><th>Page</th><th>Words</th><th>Size</th></tr>
+  <tr><td>/family-law/filing-for-temporary-custody-in-texas/</td><td>50,221</td><td>1.15 MB</td></tr>
+  <tr><td>/texas-fresh-guide/</td><td>49,218</td><td>957 KB</td></tr>
+  <tr><td>/video-center</td><td>48,807</td><td>1.30 MB</td></tr>
+  <tr><td>/.../why-should-you-create-a-successful-guardianship/</td><td>48,153</td><td>934 KB</td></tr>
+  <tr><td>/ebooks/</td><td>47,775</td><td>1.01 MB</td></tr>
+  <tr><td>/family-law/texas-child-custody-attorney/</td><td>47,391</td><td>912 KB</td></tr>
+  <tr><td>/blog/</td><td>47,320</td><td>963 KB</td></tr>
+</table>
+<p><strong>Site average: 31,397 words per page.</strong> This is extraordinarily high. Most pages appear to load the entire site's navigation, footer content, and sidebar into every page, creating massive bloat.</p>
+
+<!-- PAGESPEED INSIGHTS -->
+<div class="page-break"></div>
+<h2><span class="tag tag-critical">CRITICAL</span> Google PageSpeed &amp; Core Web Vitals</h2>
+<p>Google Lighthouse analysis reveals <strong>severe performance problems</strong> that directly impact search rankings, ad Quality Score, and user experience. Mobile performance is especially poor.</p>
+
+<h3>Lighthouse Scores</h3>
+<div class="score-grid">
+  <div class="score-card card-red">
+    <div class="num">33</div>
+    <div class="label">Performance</div>
+  </div>
+  <div class="score-card card-orange">
+    <div class="num">85</div>
+    <div class="label">Accessibility</div>
+  </div>
+  <div class="score-card" style="background:#f0fdf4; color:#16a34a; border:1px solid #bbf7d0;">
+    <div class="num">100</div>
+    <div class="label">SEO (On-Page)</div>
+  </div>
+  <div class="score-card card-red">
+    <div class="num">54</div>
+    <div class="label">Best Practices</div>
+  </div>
+</div>
+
+<h3>Core Web Vitals (Mobile)</h3>
+<div class="callout">
+  <strong>All Core Web Vitals fail Google's thresholds on mobile.</strong> This directly harms search ranking position and Google Ads Quality Score.
+</div>
+<table>
+  <tr><th>Metric</th><th>Value</th><th>Good Threshold</th><th>Status</th></tr>
+  <tr><td>Largest Contentful Paint (LCP)</td><td><strong>7.0 &ndash; 7.7s</strong></td><td>&lt; 2.5s</td><td style="color:#dc2626;">FAIL &mdash; 3x over limit</td></tr>
+  <tr><td>First Contentful Paint (FCP)</td><td><strong>5.7s</strong></td><td>&lt; 1.8s</td><td style="color:#dc2626;">FAIL</td></tr>
+  <tr><td>Total Blocking Time (TBT)</td><td><strong>1,155 &ndash; 1,440ms</strong></td><td>&lt; 200ms</td><td style="color:#dc2626;">FAIL &mdash; 6x over limit</td></tr>
+  <tr><td>Time to Interactive (TTI)</td><td><strong>36 &ndash; 40s</strong></td><td>&lt; 3.8s</td><td style="color:#dc2626;">FAIL &mdash; 10x over limit</td></tr>
+  <tr><td>Cumulative Layout Shift (CLS)</td><td><strong>0.08 &ndash; 0.10</strong></td><td>&lt; 0.1</td><td style="color:#ca8a04;">BORDERLINE</td></tr>
+  <tr><td>Speed Index</td><td><strong>8.5s</strong></td><td>&lt; 3.4s</td><td style="color:#dc2626;">FAIL</td></tr>
+</table>
+
+<h3>Root Cause: Why the Site Is So Slow</h3>
+
+<p><strong>1. Hero image is invisible to the browser preloader.</strong></p>
+<p>The homepage hero section uses a CSS <code>background-image</code> instead of an <code>&lt;img&gt;</code> tag. The browser cannot discover or preload CSS background images, so the largest visual element (LCP) doesn't start loading until after CSS is fully parsed &mdash; adding 3-4 seconds of delay.</p>
+
+<p><strong>2. Triple Google Tag Manager containers.</strong></p>
+<p>The site loads <strong>3 separate GTM containers</strong> plus HubSpot tracking loaded twice. Each container can inject dozens of additional scripts. This is the primary driver of the 1,400ms+ Total Blocking Time.</p>
+
+<p><strong>3. 279 network requests, 6MB total page weight.</strong></p>
+<table>
+  <tr><th>Resource Type</th><th>Count</th><th>Size</th></tr>
+  <tr><td>JavaScript</td><td><strong>98 scripts</strong></td><td>2,540 KiB</td></tr>
+  <tr><td>CSS</td><td>12 files</td><td>380 KiB</td></tr>
+  <tr><td>Images</td><td>85+</td><td>2,100 KiB</td></tr>
+  <tr><td>Fonts</td><td>8 files</td><td>320 KiB</td></tr>
+  <tr><td><strong>Total</strong></td><td><strong>279 requests</strong></td><td><strong>5,964 KiB (6MB)</strong></td></tr>
+</table>
+
+<p><strong>4. 68 render-blocking resources waste 3,460ms.</strong></p>
+<p>Before the page can display anything, the browser must download and process 68 CSS and JS files. This alone adds 3.5 seconds of white-screen time.</p>
+
+<p><strong>5. www &rarr; non-www redirect penalty.</strong></p>
+<p>Every visitor to <code>www.bryanfagan.com</code> gets redirected to <code>bryanfagan.com</code>, wasting <strong>883ms &ndash; 2,335ms</strong> per page load. Since all Google Ads point to the www version, every ad click starts with this penalty.</p>
+
+<h3>Top Optimization Opportunities</h3>
+<table>
+  <tr><th>Opportunity</th><th>Estimated Savings</th></tr>
+  <tr><td>Eliminate render-blocking resources (68 files)</td><td>3,460ms</td></tr>
+  <tr><td>Remove unused JavaScript (1,035 KiB wasted)</td><td>2,000ms+</td></tr>
+  <tr><td>Fix www redirect (match ads to canonical URL)</td><td>883 &ndash; 2,335ms</td></tr>
+  <tr><td>Consolidate GTM containers (3 &rarr; 1)</td><td>500 &ndash; 1,000ms</td></tr>
+  <tr><td>Convert hero to &lt;img&gt; with preload hint</td><td>2,000 &ndash; 3,000ms LCP</td></tr>
+  <tr><td>Remove duplicate HubSpot load</td><td>200 &ndash; 400ms</td></tr>
+</table>
+
+<h3>Accessibility Issues (85/100)</h3>
+<p><strong>17 color contrast failures</strong> were detected. Text elements don't meet WCAG AA contrast ratio requirements (4.5:1 for normal text, 3:1 for large text). For a law firm, accessibility compliance reduces legal liability risk and improves usability for all visitors.</p>
+
+<h3>Best Practices Issues (54/100)</h3>
+<ul>
+  <li>Deprecated browser APIs in use</li>
+  <li>Third-party cookies detected (privacy compliance risk)</li>
+  <li>Browser console errors present on page load</li>
+  <li>Missing HTTPS enforcement (no HSTS header)</li>
+</ul>
+
+<!-- SECURITY -->
+<h2><span class="tag tag-medium">MEDIUM</span> Security Headers</h2>
+<table>
+  <tr><th>Security Header</th><th>Status</th><th>Pages Affected</th></tr>
+  <tr><td>Content-Security-Policy (CSP)</td><td style="color:#dc2626;">Missing</td><td>185 / 185 (100%)</td></tr>
+  <tr><td>HTTP Strict Transport (HSTS)</td><td style="color:#dc2626;">Missing</td><td>185 / 185 (100%)</td></tr>
+  <tr><td>Referrer-Policy</td><td style="color:#dc2626;">Missing</td><td>185 / 185 (100%)</td></tr>
+</table>
+<p>No security headers are present on any page. This leaves the site vulnerable to XSS attacks, downgrade attacks, and referrer data leakage. These also negatively impact Google's trust signals.</p>
+
+<!-- TRACKING -->
+<h2><span class="tag tag-low">INFO</span> Tracking &amp; Analytics</h2>
+<table>
+  <tr><th>Tool</th><th>Status</th><th>ID</th></tr>
+  <tr><td>Google Analytics</td><td style="color:#16a34a;">Installed</td><td>&mdash;</td></tr>
+  <tr><td>Google Tag Manager</td><td style="color:#16a34a;">Installed</td><td>GTM-KRVWDDW9</td></tr>
+  <tr><td>Facebook Pixel</td><td style="color:#16a34a;">Installed</td><td>&mdash;</td></tr>
+  <tr><td>Hotjar</td><td style="color:#999;">Not Found</td><td>&mdash;</td></tr>
+</table>
+
+<!-- LINK ARCHITECTURE -->
+<h2><span class="tag tag-medium">MEDIUM</span> Link Architecture</h2>
+<p>Top pages by internal link count (most linked-to pages on the site):</p>
+<table>
+  <tr><th>Page</th><th>Inbound Internal Links</th></tr>
+  <tr><td>/faq/family-law-frequently-asked-questions/</td><td>917</td></tr>
+  <tr><td>/schedule/</td><td>881</td></tr>
+  <tr><td>/contact-us/</td><td>793</td></tr>
+  <tr><td>/about-us/.../houston-divorce-mediation/</td><td>692</td></tr>
+  <tr><td>/ (homepage)</td><td>637</td></tr>
+  <tr><td>/family-law/</td><td>631</td></tr>
+  <tr><td>/family-law/texas-child-custody-attorney/</td><td>616</td></tr>
+  <tr><td>/family-law/domestic-violence-texas/</td><td>616</td></tr>
+  <tr><td>/family-law/texas-divorce-attorney/</td><td>615</td></tr>
+  <tr><td>/family-law/child-support-texas/</td><td>615</td></tr>
+</table>
+<p>The FAQ page receives more internal links (917) than the homepage (637). This is unusual and suggests the site template links to the FAQ from every page, diluting link equity across the site.</p>
+
+<!-- GOOGLE ADS INTELLIGENCE -->
+<div class="page-break"></div>
+<h2><span class="tag tag-blue">ADS INTEL</span> Google Ads Intelligence</h2>
+<p>Bryan Fagan is running <strong>10 active ad creatives</strong> through Google Ads, managed by advertiser <strong>Palms Media LLC</strong>. This includes 8 text ads, 1 video ad, and 1 image ad. All ads target the United States.</p>
+
+<h3>Active Ad Creatives</h3>
+
+<div class="ad-card">
+  <div class="headline">Top Divorce Attorneys / Ft. Worth Family Lawyers</div>
+  <div class="url">www.bryanfagan.com/family-law/divorce</div>
+  <div class="desc">"Don't wait for things to get worse. Request a free consultation from Bryan Fagan, PLLC. Stress less about your next steps..."</div>
+  <div class="meta">First shown: Nov 26, 2025 | Last shown: Feb 28, 2026 | 5 variations</div>
+</div>
+
+<div class="ad-card">
+  <div class="headline">Understanding Criminal Record Expungement in Texas</div>
+  <div class="url">www.bryanfagan.com/family-law/austin</div>
+  <div class="desc">"Texas Fresh Guide: Clear your Texas record. Check your eligibility for expungement or sealing with the Law Office of Bryan Fagan's app."</div>
+  <div class="meta">First shown: May 6, 2025 | Last shown: Feb 28, 2026 | 4 variations</div>
+</div>
+
+<div class="ad-card">
+  <div class="headline">Local Service Ad (LSA) &mdash; Divorce Lawyer, Dallas</div>
+  <div class="url">Google Maps / LSA placement</div>
+  <div class="desc">"Law Office of Bryan... 4.0 stars (58 reviews) &mdash; Divorce lawyer, Dallas"</div>
+  <div class="meta">First shown: Dec 1, 2025 | Last shown: Feb 28, 2026 | LSA format</div>
+</div>
+
+<div class="ad-card">
+  <div class="headline">Same Day Court Filing &mdash; Emergency Custody 24/7</div>
+  <div class="url">www.bryanfagan.com/emergency/custody</div>
+  <div class="desc">"Don't wait when safety is at risk. Emergency custody lawyers in Houston ready now."</div>
+  <div class="meta">First shown: Sep 10, 2025 | Last shown: Feb 28, 2026 | 3 variations</div>
+</div>
+
+<div class="ad-card">
+  <div class="headline">Custody &amp; Visitation Lawyers / We Defend Your Custody Case</div>
+  <div class="url">bryanfagan.com (LSA)</div>
+  <div class="desc">"Protect your child and your rights with trusted custody lawyers who fight for your family."</div>
+  <div class="meta">First shown: Dec 1, 2025 | Last shown: Feb 28, 2026 | 6 variations including LSA (61 reviews)</div>
+</div>
+
+<h3>Ads + SEO Cross-Reference Issues</h3>
+<div class="callout callout-blue">
+  <strong>Key finding:</strong> Multiple ad landing pages have technical SEO problems, meaning Bryan Fagan is paying for traffic to broken pages.
+</div>
+<table>
+  <tr><th>Ad Landing Page</th><th>Issue Found</th></tr>
+  <tr><td>/family-law/divorce</td><td>Not found in crawl &mdash; may be a redirect or 404</td></tr>
+  <tr><td>/family-law/austin</td><td>Not found in crawl &mdash; may be a redirect or 404</td></tr>
+  <tr><td>/emergency/custody</td><td>Not found in crawl &mdash; may be a redirect or 404</td></tr>
+  <tr><td>Homepage (bryanfagan.com)</td><td>827-char broken title tag, 942KB page, 42K words</td></tr>
+</table>
+<p>Three of the primary ad landing pages were not found in our crawl of 185 pages. These pages may be returning 404 errors, redirecting elsewhere, or are blocked from crawling &mdash; all of which waste ad spend.</p>
+
+<!-- TALKING POINTS -->
+<div class="page-break"></div>
+<h2>Sales Call Talking Points</h2>
+
+<div class="callout" style="background:#fff7ed; border-left-color:#e8491d;">
+<strong>1. "Your homepage title tag is broken."</strong><br>
+Instead of showing "Bryan Fagan Law: Texas Family & Estate Attorney" in Google, your homepage title is 827 characters of corrupted code. This is the #1 most important on-page SEO element, and it's broken on your most important page.
+</div>
+
+<div class="callout" style="background:#fff7ed; border-left-color:#e8491d;">
+<strong>2. "You're paying for ads to pages that may not exist."</strong><br>
+Three of your Google Ads landing pages (/family-law/divorce, /family-law/austin, /emergency/custody) weren't found when we crawled your site. If these are returning errors or redirects, you're burning ad budget on broken experiences.
+</div>
+
+<div class="callout" style="background:#fff7ed; border-left-color:#e8491d;">
+<strong>3. "Google gives your site a 33 out of 100 for performance."</strong><br>
+Your homepage scores 33/100 on Google's own PageSpeed test. Your largest content takes 7 seconds to appear (Google wants under 2.5). The page isn't interactive for 36-40 seconds on mobile. Potential clients searching from their phone are leaving before your page even loads.
+</div>
+
+<div class="callout" style="background:#fff7ed; border-left-color:#e8491d;">
+<strong>4. "Every ad click wastes 1-2 seconds on a redirect."</strong><br>
+All your Google Ads point to www.bryanfagan.com, but the site redirects to bryanfagan.com (without www). That redirect alone wastes 883ms to 2.3 seconds per visit. For someone clicking your emergency custody ad, that's an eternity.
+</div>
+
+<div class="callout" style="background:#fff7ed; border-left-color:#e8491d;">
+<strong>5. "You're running 3 separate GTM containers and HubSpot is loaded twice."</strong><br>
+Your site loads 98 JavaScript files totaling 2.5MB. Three Google Tag Manager containers and duplicate HubSpot tracking are blocking the page for over 1,400ms. Consolidating to 1 GTM container alone could save a full second of load time.
+</div>
+
+<div class="callout" style="background:#fff7ed; border-left-color:#e8491d;">
+<strong>6. "Your site has zero security headers."</strong><br>
+All 185 pages are missing Content-Security-Policy, HSTS, and Referrer-Policy headers. For a law firm handling sensitive client information, this is a liability risk and a negative trust signal to Google.
+</div>
+
+<div class="callout" style="background:#fff7ed; border-left-color:#e8491d;">
+<strong>7. "15 pages are telling Google to look somewhere else."</strong><br>
+You have 15 canonical URL conflicts where pages point Google to different URLs &mdash; including one that sends authority to an entirely different domain (texasdivorcelaw.net). This is bleeding your SEO value.
+</div>
+
+<div class="callout" style="background:#fff7ed; border-left-color:#e8491d;">
+<strong>8. "Your pages average 31,000 words each."</strong><br>
+A typical well-optimized page has 1,000-3,000 words. Your pages average over 31,000. This suggests a template issue loading redundant content on every page, which hurts load time, crawl budget, and keyword focus.
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <p>Prepared by <strong>Cappio</strong> | Feb 28, 2026</p>
+</div>
+
+</body>
+</html>

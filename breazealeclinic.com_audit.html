@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Website Audit: breazealeclinic.com | Cappio</title>
+<style>
+  @page { size: A4; margin: 0.75in; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; color: #1a1a1a; line-height: 1.6; background: #fff; }
+  .page-break { page-break-before: always; }
+
+  /* Header */
+  .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid #e8491d; padding-bottom: 16px; margin-bottom: 32px; }
+  .header img { height: 56px; width: auto; }
+  .header .date { font-size: 14px; color: #666; }
+
+  /* Title */
+  .report-title { font-size: 28px; font-weight: 700; color: #1a1a1a; margin-bottom: 4px; }
+  .report-subtitle { font-size: 16px; color: #666; margin-bottom: 32px; }
+
+  /* Grade Cards */
+  .grade-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px; }
+  .grade-card { border-radius: 8px; padding: 14px; text-align: center; }
+  .grade-card .grade { font-size: 42px; font-weight: 800; line-height: 1; }
+  .grade-card .glabel { font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; }
+  .grade-a { background: #f0fdf4; color: #16a34a; border: 2px solid #bbf7d0; }
+  .grade-b { background: #eff6ff; color: #2563eb; border: 2px solid #bfdbfe; }
+  .grade-c { background: #fefce8; color: #ca8a04; border: 2px solid #fef08a; }
+  .grade-d { background: #fff7ed; color: #ea580c; border: 2px solid #fed7aa; }
+  .grade-f { background: #fef2f2; color: #dc2626; border: 2px solid #fecaca; }
+
+  /* Score Card */
+  .score-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 32px; }
+  .score-card { border-radius: 8px; padding: 16px; text-align: center; }
+  .score-card .num { font-size: 36px; font-weight: 700; }
+  .score-card .label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .card-red { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
+  .card-orange { background: #fff7ed; color: #ea580c; border: 1px solid #fed7aa; }
+  .card-yellow { background: #fefce8; color: #ca8a04; border: 1px solid #fef08a; }
+  .card-blue { background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; }
+  .card-green { background: #f0fdf4; color: #16a34a; border: 1px solid #bbf7d0; }
+
+  /* Sections */
+  h2 { font-size: 20px; color: #e8491d; border-bottom: 2px solid #e8491d; padding-bottom: 6px; margin: 28px 0 16px 0; }
+  h3 { font-size: 16px; color: #1a1a1a; margin: 18px 0 8px 0; }
+
+  /* Tables */
+  table { width: 100%; border-collapse: collapse; margin: 12px 0 20px 0; font-size: 13px; }
+  th { background: #f8f8f8; text-align: left; padding: 8px 10px; border-bottom: 2px solid #ddd; font-weight: 600; }
+  td { padding: 7px 10px; border-bottom: 1px solid #eee; word-break: break-all; }
+  tr:nth-child(even) { background: #fafafa; }
+
+  /* Tags */
+  .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; margin-right: 4px; }
+  .tag-critical { background: #dc2626; color: #fff; }
+  .tag-high { background: #ea580c; color: #fff; }
+  .tag-medium { background: #ca8a04; color: #fff; }
+  .tag-low { background: #2563eb; color: #fff; }
+  .tag-green { background: #16a34a; color: #fff; }
+
+  /* Callout */
+  .callout { background: #fef2f2; border-left: 4px solid #dc2626; padding: 12px 16px; margin: 12px 0; border-radius: 0 6px 6px 0; font-size: 14px; }
+  .callout-orange { background: #fff7ed; border-left-color: #ea580c; }
+  .callout-blue { background: #eff6ff; border-left-color: #2563eb; }
+  .callout-brand { background: #fff7ed; border-left-color: #e8491d; }
+  .callout-green { background: #f0fdf4; border-left-color: #16a34a; }
+
+  /* Difficulty badges */
+  .difficulty { display: inline-block; font-size: 11px; font-weight: 600; padding: 1px 6px; border-radius: 3px; margin-left: 8px; }
+  .diff-easy { background: #dcfce7; color: #166534; }
+  .diff-moderate { background: #fef9c3; color: #854d0e; }
+  .diff-major { background: #fee2e2; color: #991b1b; }
+
+  /* Side-by-Side Speed Comparison */
+  .speed-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 16px 0 24px 0; }
+  .speed-panel { border: 2px solid #e5e7eb; border-radius: 8px; padding: 16px; text-align: center; }
+  .speed-panel h4 { font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 8px; }
+  .speed-panel .big-score { font-size: 48px; font-weight: 800; line-height: 1.1; }
+  .speed-panel .metric-row { display: flex; justify-content: space-between; padding: 4px 0; font-size: 13px; border-bottom: 1px solid #f3f4f6; }
+  .speed-panel .metric-label { color: #666; }
+  .speed-panel .metric-val { font-weight: 600; }
+
+  /* Ad cards */
+  .ad-card { border: 1px solid #e5e7eb; border-radius: 8px; padding: 14px; margin: 10px 0; }
+  .ad-card .headline { font-weight: 700; font-size: 15px; color: #1a0dab; }
+  .ad-card .url { font-size: 12px; color: #006621; }
+  .ad-card .desc { font-size: 13px; color: #444; margin-top: 4px; }
+  .ad-card .meta { font-size: 11px; color: #999; margin-top: 6px; }
+
+  /* Competitor Ad Table */
+  .comp-ad-table td:nth-child(4), .comp-ad-table td:nth-child(5) { text-align: center; }
+  .comp-ad-table th:nth-child(4), .comp-ad-table th:nth-child(5) { text-align: center; }
+  .you-row { background: #fff7ed !important; font-weight: 600; }
+  .you-row td { border-top: 2px solid #e8491d; border-bottom: 2px solid #e8491d; }
+
+  /* Social Media Presence */
+  .social-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+  .social-card { border: 2px solid #e5e7eb; border-radius: 8px; padding: 16px; }
+  .social-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+  .social-card .social-status { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+  .social-card .social-stat { font-size: 13px; color: #555; margin-top: 2px; }
+  .social-found { border-color: #16a34a; }
+  .social-missing { border-color: #dc2626; background: #fef2f2; }
+
+  /* Local Presence */
+  .listing-card { border: 2px solid #e8491d; border-radius: 8px; padding: 16px; margin: 12px 0; background: #fff; }
+  .listing-card .biz-name { font-size: 18px; font-weight: 700; color: #1a1a1a; }
+  .listing-card .stars { color: #f59e0b; font-size: 16px; }
+  .listing-card .detail { font-size: 13px; color: #555; margin-top: 4px; }
+  .listing-card .missing { color: #dc2626; font-weight: 600; }
+  .competitor-row-highlight { background: #fff7ed !important; font-weight: 600; }
+  .rank-badge { display: inline-block; background: #e8491d; color: #fff; border-radius: 50%; width: 24px; height: 24px; text-align: center; line-height: 24px; font-size: 12px; font-weight: 700; }
+
+  /* CTA Box */
+  .cta-box { background: linear-gradient(135deg, #e8491d 0%, #c13b17 100%); color: #fff; padding: 16px 20px; border-radius: 8px; margin: 16px 0; }
+  .cta-box strong { font-size: 15px; }
+  .cta-box p { font-size: 13px; margin-top: 4px; opacity: 0.9; }
+
+  /* Footer */
+  .footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid #ddd; font-size: 11px; color: #999; text-align: center; }
+
+  ul { margin-left: 20px; margin-bottom: 12px; }
+  li { margin-bottom: 4px; font-size: 14px; }
+  p { font-size: 14px; margin-bottom: 10px; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <img src="data:image/png;base64,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" alt="Cappio" style="height:56px; width:auto;">
+  <div class="date">Audit Date: March 1, 2026</div>
+</div>
+
+<!-- TITLE -->
+<div class="report-title">Website Intelligence Report</div>
+<div class="report-subtitle">breazealeclinic.com &mdash; Breazeale Clinic</div>
+
+<!-- GRADE CARDS (2 rows of 4) -->
+<div class="grade-grid">
+  <div class="grade-card grade-d">
+    <div class="grade">D</div>
+    <div class="glabel">Overall Health</div>
+  </div>
+  <div class="grade-card grade-f">
+    <div class="grade">F</div>
+    <div class="glabel">Mobile Speed</div>
+  </div>
+  <div class="grade-card grade-c">
+    <div class="grade">C</div>
+    <div class="glabel">Desktop Speed</div>
+  </div>
+  <div class="grade-card grade-f">
+    <div class="grade">F</div>
+    <div class="glabel">SEO Health</div>
+  </div>
+</div>
+<div class="grade-grid">
+  <div class="grade-card grade-c">
+    <div class="grade">C</div>
+    <div class="glabel">Security</div>
+  </div>
+  <div class="grade-card grade-b">
+    <div class="grade">B</div>
+    <div class="glabel">Local Presence</div>
+  </div>
+  <div class="grade-card grade-f">
+    <div class="grade">F</div>
+    <div class="glabel">Advertising</div>
+  </div>
+  <div class="grade-card grade-f">
+    <div class="grade">F</div>
+    <div class="glabel">Analytics</div>
+  </div>
+</div>
+
+<!-- EXECUTIVE SUMMARY DASHBOARD -->
+<h2>Executive Summary</h2>
+
+<div class="callout">
+<strong><span class="tag tag-critical">CRITICAL</span> Mobile Performance Score: 27/100</strong><br>
+Your mobile site scores 27 out of 100 on Google PageSpeed &mdash; a failing grade. The largest element takes 18.5 seconds to load (LCP), and the page shifts dramatically while loading (CLS 0.677). Google penalizes sites with LCP over 2.5s &mdash; yours is 7x that threshold. Patients searching on their phones are leaving before your site even finishes loading.
+</div>
+
+<div class="callout">
+<strong><span class="tag tag-critical">CRITICAL</span> Every Page on Your Site Is Missing an H1 Tag</strong><br>
+Not a single page on breazealeclinic.com has an H1 heading tag. H1 is the most important on-page SEO signal &mdash; it tells Google what each page is about. Without H1 tags, your 105 pages are essentially invisible to search engines for their target keywords. This is the most severe SEO deficiency we've seen in an audit.
+</div>
+
+<div class="callout">
+<strong><span class="tag tag-critical">CRITICAL</span> Zero Advertising &mdash; While Competitors Dominate Paid Search</strong><br>
+You have zero active Google Ads and zero Facebook Ads. Meanwhile, competitors like Gallaher Plastic Surgery and Dr. Jason Hall are actively advertising to your potential patients. Every day without ads is a day your competitors capture the patients who are searching for plastic surgery in Knoxville.
+</div>
+
+<div class="callout">
+<strong><span class="tag tag-critical">CRITICAL</span> Zero Analytics Installed</strong><br>
+No Google Analytics, no Google Tag Manager, no Facebook Pixel, no Hotjar. You have absolutely no visibility into who visits your website, what pages they view, or how they found you. You're operating completely blind &mdash; unable to measure ROI, track conversions, or understand your audience.
+</div>
+
+<div class="callout callout-green">
+<strong>Quick Win: Add H1 Tags to Every Page</strong> <span class="difficulty diff-easy">Easy Fix</span><br>
+Adding a single H1 heading to each page is a straightforward Squarespace edit that immediately tells Google what each page is about. Start with the homepage, service pages (breast augmentation, face lift, tummy tuck), and the contact page.
+</div>
+
+<div class="callout callout-green">
+<strong>Quick Win: Install Google Analytics &amp; Tag Manager</strong> <span class="difficulty diff-easy">Easy Fix</span><br>
+Adding GA4 and GTM to your Squarespace site takes under 30 minutes and immediately gives you visibility into your traffic sources, visitor behavior, and conversion paths. This is the foundation for every marketing decision.
+</div>
+
+<div class="callout callout-orange">
+<strong>Gallaher Plastic Surgery has 626 reviews to your 220</strong><br>
+Your top competitor has nearly 3x your Google review count. With a 4.9 rating and 626 reviews, Gallaher dominates the local pack for "plastic surgery in Knoxville." You rank #6 &mdash; but your 4.9 stars and quality deserve a top-3 position. Closing the review gap is critical.
+</div>
+
+<!-- HOMEPAGE DEEP DIVE -->
+<h2><span class="tag tag-critical">CRITICAL</span> Homepage Deep Dive</h2>
+<table>
+  <tr><th>Metric</th><th>Value</th><th>Status</th></tr>
+  <tr><td>Title</td><td>Breazeale Clinic | Enhance Your Look Today</td><td><span class="tag tag-green">Good</span></td></tr>
+  <tr><td>Title Length</td><td>43 characters</td><td><span class="tag tag-green">Good</span></td></tr>
+  <tr><td>Meta Description</td><td>155 characters &mdash; mentions plastic surgery, non-surgical, Knoxville, TN</td><td><span class="tag tag-green">Good</span></td></tr>
+  <tr><td>H1 Tag</td><td>Missing</td><td><span class="tag tag-critical">Missing</span></td></tr>
+  <tr><td>Page Size</td><td>1.3 MB</td><td><span class="tag tag-critical">Very heavy</span></td></tr>
+  <tr><td>Response Time</td><td>328ms</td><td><span class="tag tag-green">Good</span></td></tr>
+  <tr><td>Schema Markup</td><td>WebSite + LocalBusiness (address fields empty)</td><td><span class="tag tag-medium">Incomplete</span></td></tr>
+  <tr><td>Open Graph Tags</td><td>Title, description, image, site_name</td><td><span class="tag tag-green">Complete</span></td></tr>
+  <tr><td>Canonical URL</td><td>Missing trailing slash (mismatch with page URL)</td><td><span class="tag tag-medium">Minor</span></td></tr>
+  <tr><td>Heading Hierarchy</td><td>h3, h3, h2, h4, h4, h4, h4, h4 &mdash; skips H1 entirely</td><td><span class="tag tag-critical">Broken</span></td></tr>
+  <tr><td>Google Analytics</td><td>Not detected</td><td><span class="tag tag-critical">Missing</span></td></tr>
+  <tr><td>Google Tag Manager</td><td>Not detected</td><td><span class="tag tag-critical">Missing</span></td></tr>
+  <tr><td>Facebook Pixel</td><td>Not detected</td><td><span class="tag tag-critical">Missing</span></td></tr>
+</table>
+
+<div class="callout">
+<strong>Homepage Heading Structure Is Completely Broken</strong><br>
+Your homepage starts with H3 tags and jumps to H2, then H4 &mdash; but never uses an H1. Search engines expect a clear heading hierarchy starting with H1 as the page title. This broken structure makes it impossible for Google to understand your homepage's primary topic and target keywords.
+</div>
+
+<div class="callout callout-orange">
+<strong>LocalBusiness Schema Has Empty Address Fields</strong><br>
+Your homepage includes LocalBusiness structured data, but the address and openingHours fields are empty. This means Google's knowledge panel can't pull your location information directly from your website. Fill in your full address, phone number, and business hours in the schema markup.
+</div>
+
+<!-- SITE-WIDE SEO ISSUES -->
+<h2><span class="tag tag-high">HIGH</span> Site-Wide SEO Issues</h2>
+
+<h3>H1 Tag Issues</h3>
+<table>
+  <tr><th>Page</th><th>H1 Count</th><th>Issue</th></tr>
+  <tr><td>/ (homepage)</td><td>0</td><td><span class="tag tag-critical">Missing</span></td></tr>
+  <tr><td>/breast-augmentation</td><td>0</td><td><span class="tag tag-critical">Missing</span></td></tr>
+  <tr><td>/breast-lift</td><td>0</td><td><span class="tag tag-critical">Missing</span></td></tr>
+  <tr><td>/brow-lift</td><td>0</td><td><span class="tag tag-critical">Missing</span></td></tr>
+  <tr><td>/chin-augmentation</td><td>0</td><td><span class="tag tag-critical">Missing</span></td></tr>
+  <tr><td>/contact</td><td>0</td><td><span class="tag tag-critical">Missing</span></td></tr>
+  <tr><td>/eyelid-surgery</td><td>0</td><td><span class="tag tag-critical">Missing</span></td></tr>
+  <tr><td>/face-lift</td><td>0</td><td><span class="tag tag-critical">Missing</span></td></tr>
+  <tr><td>/liposuction</td><td>0</td><td><span class="tag tag-critical">Missing</span></td></tr>
+  <tr><td>/meet-dr-breazeale</td><td>0</td><td><span class="tag tag-critical">Missing</span></td></tr>
+  <tr><td>/micro-needling</td><td>0</td><td><span class="tag tag-critical">Missing</span></td></tr>
+  <tr><td>/testimonials</td><td>0</td><td><span class="tag tag-critical">Missing</span></td></tr>
+  <tr><td>/the-staff</td><td>0</td><td><span class="tag tag-critical">Missing</span></td></tr>
+  <tr><td>/tummy-tuck</td><td>0</td><td><span class="tag tag-critical">Missing</span></td></tr>
+  <tr><td>/vectra-3d</td><td>0</td><td><span class="tag tag-critical">Missing</span></td></tr>
+</table>
+<p><strong>Every page on the site is missing an H1 tag.</strong> This is a site-wide deficiency affecting all 105 pages (including HTTP duplicates). No page uses a proper H1 heading &mdash; the heading hierarchy typically starts at H2 or H3. This is the single most impactful SEO fix available.</p>
+
+<h3>Canonical URL Conflicts &mdash; 32+ Pages</h3>
+<table>
+  <tr><th>Page URL</th><th>Canonical Points To</th></tr>
+  <tr><td>https://www.breazealeclinic.com/</td><td>https://www.breazealeclinic.com (trailing slash mismatch)</td></tr>
+  <tr><td>/home</td><td>https://www.breazealeclinic.com (duplicate homepage)</td></tr>
+  <tr><td>/nonsurgical</td><td>/botox (alias redirect)</td></tr>
+  <tr><td>/about-us</td><td>/meet-dr-breazeale (alias redirect)</td></tr>
+  <tr><td>/surgery</td><td>/breast-augmentation (alias redirect)</td></tr>
+  <tr><td>/resources</td><td>/blog (alias redirect)</td></tr>
+  <tr><td>All http:// pages (32)</td><td>Corresponding https:// URLs</td></tr>
+</table>
+<p><strong>32 HTTP pages are accessible alongside their HTTPS versions.</strong> The HTTP versions are being crawled as completely separate pages instead of redirecting to HTTPS. This splits your page authority, wastes crawl budget, and creates duplicate content issues. The HTTP versions should return 301 redirects, not 200 responses.</p>
+
+<!-- PERFORMANCE & PAGE WEIGHT -->
+<div class="page-break"></div>
+<h2><span class="tag tag-medium">MEDIUM</span> Performance &amp; Page Weight</h2>
+
+<h3>Slowest Pages</h3>
+<table>
+  <tr><th>Page</th><th>Response Time</th></tr>
+  <tr><td>/blog/unlock-radiant-skin-with-microneedling-at-breazeale-clinic</td><td>795ms</td></tr>
+  <tr><td>/brow-lift</td><td>772ms</td></tr>
+  <tr><td>/the-staff</td><td>726ms</td></tr>
+  <tr><td>/chemical-peels</td><td>632ms</td></tr>
+  <tr><td>/cart</td><td>613ms</td></tr>
+  <tr><td>/blog?offset=1732207292976</td><td>613ms</td></tr>
+  <tr><td>/vectra-3d</td><td>589ms</td></tr>
+  <tr><td>/face-lift</td><td>564ms</td></tr>
+  <tr><td>/botox</td><td>563ms</td></tr>
+  <tr><td>/blog/tag/breast+augmentation</td><td>556ms</td></tr>
+</table>
+<p><strong>Average site response time: 305ms.</strong> Server response times are reasonable for a Squarespace site. The real performance problem is on the client side &mdash; massive page weights and JavaScript execution cause the 27/100 mobile PageSpeed score.</p>
+
+<h3>Largest Pages by Content</h3>
+<table>
+  <tr><th>Page</th><th>Words</th><th>Size</th></tr>
+  <tr><td>/brow-lift</td><td>3,731</td><td>2.1 MB</td></tr>
+  <tr><td>/tummy-tuck</td><td>4,863</td><td>1.7 MB</td></tr>
+  <tr><td>/the-staff</td><td>2,343</td><td>1.6 MB</td></tr>
+  <tr><td>/ (homepage)</td><td>4,437</td><td>1.3 MB</td></tr>
+  <tr><td>/micro-needling</td><td>3,547</td><td>1.3 MB</td></tr>
+</table>
+<p><strong>Site average: 3,023 words per page.</strong> Pages are content-rich but extremely heavy. The brow-lift page alone weighs 2.1 MB &mdash; over 4x the recommended 500 KB limit. Large, unoptimized images are likely the primary contributor.</p>
+
+<!-- PAGESPEED: MOBILE vs DESKTOP -->
+<div class="page-break"></div>
+<h2><span class="tag tag-critical">CRITICAL</span> Google PageSpeed &amp; Core Web Vitals</h2>
+<p>Google uses your <strong>mobile</strong> score for search rankings. Here's how your site performs on both devices:</p>
+
+<div class="speed-compare">
+  <div class="speed-panel" style="border-color: #dc2626;">
+    <h4>Mobile</h4>
+    <div class="big-score" style="color: #dc2626;">27</div>
+    <div style="font-size:12px; color:#666; margin-bottom:10px;">Performance Score</div>
+    <div class="metric-row"><span class="metric-label">LCP</span><span class="metric-val">18.5s</span></div>
+    <div class="metric-row"><span class="metric-label">FCP</span><span class="metric-val">3.5s</span></div>
+    <div class="metric-row"><span class="metric-label">TBT</span><span class="metric-val">530ms</span></div>
+    <div class="metric-row"><span class="metric-label">CLS</span><span class="metric-val">0.677</span></div>
+    <div class="metric-row"><span class="metric-label">Speed Index</span><span class="metric-val">6.2s</span></div>
+    <div class="metric-row"><span class="metric-label">TTI</span><span class="metric-val">12.8s</span></div>
+  </div>
+  <div class="speed-panel" style="border-color: #ca8a04;">
+    <h4>Desktop</h4>
+    <div class="big-score" style="color: #ca8a04;">60</div>
+    <div style="font-size:12px; color:#666; margin-bottom:10px;">Performance Score</div>
+    <div class="metric-row"><span class="metric-label">LCP</span><span class="metric-val">5.4s</span></div>
+    <div class="metric-row"><span class="metric-label">FCP</span><span class="metric-val">1.1s</span></div>
+    <div class="metric-row"><span class="metric-label">TBT</span><span class="metric-val">280ms</span></div>
+    <div class="metric-row"><span class="metric-label">CLS</span><span class="metric-val">0.555</span></div>
+    <div class="metric-row"><span class="metric-label">Speed Index</span><span class="metric-val">2.1s</span></div>
+    <div class="metric-row"><span class="metric-label">TTI</span><span class="metric-val">3.4s</span></div>
+  </div>
+</div>
+
+<h3>Lighthouse Scores (Mobile)</h3>
+<div class="score-grid">
+  <div class="score-card card-red">
+    <div class="num">27</div>
+    <div class="label">Performance</div>
+  </div>
+  <div class="score-card card-green">
+    <div class="num">95</div>
+    <div class="label">Accessibility</div>
+  </div>
+  <div class="score-card card-green">
+    <div class="num">92</div>
+    <div class="label">SEO (On-Page)</div>
+  </div>
+  <div class="score-card card-green">
+    <div class="num">96</div>
+    <div class="label">Best Practices</div>
+  </div>
+</div>
+
+<h3>Top Optimization Opportunities</h3>
+<div class="callout callout-orange">
+<strong>Largest Contentful Paint: 18.5 seconds (mobile)</strong><br>
+The largest visible element on your homepage takes 18.5 seconds to appear on mobile. Google's threshold is 2.5 seconds &mdash; you're 7x over the limit. This is likely caused by large, unoptimized hero images loading without proper lazy loading or responsive sizing.
+</div>
+<div class="callout callout-blue">
+<strong>Cumulative Layout Shift: 0.677 (mobile)</strong><br>
+Your page shifts dramatically as it loads &mdash; images pop in, text moves around, buttons jump. Google's threshold is 0.1 &mdash; you're nearly 7x over. This creates a frustrating experience where patients try to tap a button and the page jumps, causing them to click something else entirely.
+</div>
+<div class="callout callout-blue">
+<strong>Page Weight: 1.3&ndash;2.1 MB Per Page</strong><br>
+Your pages are 2&ndash;4x the recommended 500 KB limit. The brow-lift page weighs 2.1 MB. Optimizing images (WebP format, responsive srcset, lazy loading) could cut page weight by 60&ndash;80% and dramatically improve mobile performance.
+</div>
+
+<!-- SECURITY HEADERS -->
+<h2><span class="tag tag-medium">MEDIUM</span> Security Headers</h2>
+
+<table>
+  <tr><th>Security Header</th><th>Status</th><th>Impact</th></tr>
+  <tr><td>HSTS (Strict-Transport-Security)</td><td><span class="tag tag-green">Present</span> &mdash; max-age=15552000 (180 days)</td><td>Forces HTTPS connections</td></tr>
+  <tr><td>X-Frame-Options</td><td><span class="tag tag-green">Present</span> &mdash; SAMEORIGIN</td><td>Prevents clickjacking attacks</td></tr>
+  <tr><td>Content-Security-Policy (CSP)</td><td><span class="tag tag-critical">Missing</span> on all 105 pages</td><td>Prevents XSS and data injection attacks</td></tr>
+  <tr><td>Referrer-Policy</td><td><span class="tag tag-high">Missing</span> on all 105 pages</td><td>Controls information sent to other sites</td></tr>
+</table>
+<p><strong>Security Grade: C (2 of 4 headers present).</strong> HSTS and X-Frame-Options are properly configured. However, the absence of CSP and Referrer-Policy leaves the site vulnerable to cross-site scripting and referrer data leaks. As a medical practice handling patient information, security should be a priority. Squarespace controls these server headers; resolution may require platform-level settings or migration.</p>
+
+<!-- TRACKING & ANALYTICS -->
+<h2><span class="tag tag-low">INFO</span> Tracking &amp; Analytics</h2>
+
+<table>
+  <tr><th>Tracking Tool</th><th>Status</th></tr>
+  <tr><td>Google Analytics</td><td><span class="tag tag-critical">Not Detected</span></td></tr>
+  <tr><td>Google Tag Manager</td><td><span class="tag tag-critical">Not Detected</span></td></tr>
+  <tr><td>Facebook Pixel</td><td><span class="tag tag-critical">Not Detected</span></td></tr>
+  <tr><td>Hotjar</td><td><span class="tag tag-critical">Not Detected</span></td></tr>
+</table>
+<p><strong>Analytics Grade: F (0 of 4 tools detected).</strong> This is the most serious analytics gap possible. Without any tracking tools, you have zero visibility into your website traffic. You cannot measure which pages patients visit, how they find you, whether your marketing is working, or what your conversion rate is. Every marketing dollar is untrackable.</p>
+
+<div class="cta-box">
+<strong>We can help.</strong>
+<p>Cappio's analytics setup service installs GA4, Google Tag Manager, Facebook Pixel, and conversion tracking so you can measure every visitor, every click, and every booking.</p>
+</div>
+
+<!-- LINK ARCHITECTURE -->
+<h2><span class="tag tag-medium">MEDIUM</span> Link Architecture</h2>
+<p>Top pages by internal link count (most linked-to pages on the site):</p>
+<table>
+  <tr><th>Page</th><th>Inbound Internal Links</th></tr>
+  <tr><td>/contact</td><td>584</td></tr>
+  <tr><td>/ (homepage)</td><td>446</td></tr>
+  <tr><td>/meet-dr-breazeale</td><td>231</td></tr>
+  <tr><td>/the-staff</td><td>221</td></tr>
+  <tr><td>/waxing-tinting</td><td>219</td></tr>
+  <tr><td>/vectra-3d</td><td>219</td></tr>
+  <tr><td>/tummy-tuck</td><td>219</td></tr>
+  <tr><td>/treat-now-pay-later</td><td>219</td></tr>
+  <tr><td>/testimonials</td><td>219</td></tr>
+  <tr><td>/botox</td><td>219</td></tr>
+</table>
+<p><strong>The /contact page is the most linked-to page (584 links)</strong>, which is excellent for driving appointment inquiries. However, the even distribution of 219 links to most service pages suggests a large navigation menu. Consider highlighting your highest-revenue procedures (breast augmentation, face lift) with more prominent internal linking.</p>
+
+<!-- LOCAL PRESENCE & COMPETITIVE LANDSCAPE -->
+<div class="page-break"></div>
+<h2><span class="tag tag-critical">CRITICAL</span> Local Presence &amp; Competitive Landscape</h2>
+<p>Your Google Maps listing is often the first thing potential customers see. Here's how your business appears &mdash; and how you compare to your local competition.</p>
+
+<div class="listing-card">
+  <div class="biz-name">Breazeale Clinic <span class="rank-badge">6</span></div>
+  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733; 4.9</div>
+  <div class="detail"><strong>220 reviews</strong></div>
+  <div class="detail">2068 Lakeside Centre Wy, Knoxville, TN 37922</div>
+  <div class="detail">breazealeclinic.com</div>
+</div>
+
+<div class="callout callout-orange">
+<strong>Ranking #6 with a 4.9-Star Rating</strong><br>
+Your 4.9 rating with 220 reviews is excellent, but you're sitting at position #6 in local search results for "plastic surgery in Knoxville." The top competitor, Gallaher Plastic Surgery, holds position #1 with 626 reviews. Improving your Google Business Profile optimization and growing reviews can close this gap.
+</div>
+
+<h3>Competitive Comparison &mdash; Plastic Surgery in Knoxville, TN</h3>
+<table>
+  <tr><th>Rank</th><th>Business</th><th>Rating</th><th>Reviews</th></tr>
+  <tr><td>1</td><td>Gallaher Plastic Surgery &amp; Spa</td><td>4.9</td><td>626</td></tr>
+  <tr><td>2</td><td>Dr. Jason Hall, Plastic Surgery</td><td>5.0</td><td>408</td></tr>
+  <tr><td>3</td><td>H/K/B Cosmetic Surgery</td><td>4.8</td><td>331</td></tr>
+  <tr><td>4</td><td>Lumiere Medical Spa</td><td>4.9</td><td>287</td></tr>
+  <tr><td>5</td><td>The Lucas Center</td><td>4.9</td><td>243</td></tr>
+  <tr class="you-row"><td>6</td><td><strong>Breazeale Clinic (YOU)</strong></td><td>4.9</td><td>220</td></tr>
+</table>
+<p><strong>Market insight:</strong> Knoxville's plastic surgery market is highly competitive. The top 5 competitors all have more reviews than you. Gallaher leads with nearly 3x your review count. The review gap is the most actionable lever for improving your Maps ranking.</p>
+
+<!-- SOCIAL MEDIA PRESENCE -->
+<div class="page-break"></div>
+<h2><span class="tag tag-medium">MEDIUM</span> Social Media Presence</h2>
+<p>An active social media presence builds trust and drives traffic. Here's what we found:</p>
+
+<div class="social-grid">
+  <div class="social-card social-found">
+    <h4>Facebook</h4>
+    <div class="social-status" style="color:#16a34a;">Page Found</div>
+    <div class="social-stat"><strong>~50,000</strong> followers</div>
+    <div class="social-stat">Category: Plastic Surgeon</div>
+    <div class="social-stat">Running Ads: <span style="color:#dc2626; font-weight:600;">No</span></div>
+  </div>
+  <div class="social-card social-missing">
+    <h4>Instagram</h4>
+    <div class="social-status" style="color:#dc2626;">Not Found</div>
+    <div class="social-stat">No Instagram presence detected under expected handles.</div>
+    <div class="social-stat">Instagram is the #1 platform for plastic surgery discovery &mdash; patients search for before/after photos, procedure videos, and surgeon credentials.</div>
+  </div>
+</div>
+
+<div class="callout callout-orange">
+<strong>50,000 Facebook Followers But Zero Ads</strong><br>
+You have a massive Facebook following of 50,000 &mdash; but you're not running any Facebook ads to leverage this audience. With zero competitors advertising on Meta, even a modest budget would give you exclusive paid visibility. Your existing follower base provides a powerful foundation for lookalike audiences and retargeting campaigns.
+</div>
+
+<div class="callout callout-orange">
+<strong>No Instagram Presence for a Plastic Surgery Practice</strong><br>
+Instagram is the #1 discovery platform for aesthetic procedures. Patients actively search for before/after transformations, watch procedure videos, and research surgeons on Instagram. Your absence means you're invisible on the platform that matters most for visual results-driven practices.
+</div>
+
+<div class="cta-box">
+<strong>We can help.</strong>
+<p>Cappio's social media management builds your Instagram presence, creates compelling before/after content, and runs targeted ads to turn followers into consultations.</p>
+</div>
+
+<!-- COMPETITOR AD INTELLIGENCE -->
+<div class="page-break"></div>
+<h2><span class="tag tag-critical">CRITICAL</span> Advertising Intelligence</h2>
+<p>Active advertising signals a competitive, growth-focused business. Here's the paid advertising landscape in your market:</p>
+
+<h3>Competitor Ad Comparison</h3>
+<table class="comp-ad-table">
+  <tr><th>Business</th><th>Rating</th><th>Reviews</th><th>Google Ads</th><th>Facebook Ads</th></tr>
+  <tr><td>Gallaher Plastic Surgery</td><td>4.9</td><td>626</td><td>Active</td><td>Active</td></tr>
+  <tr><td>Dr. Jason Hall</td><td>5.0</td><td>408</td><td>Active</td><td>Active</td></tr>
+  <tr><td>H/K/B Cosmetic Surgery</td><td>4.8</td><td>331</td><td>Active</td><td>Unknown</td></tr>
+  <tr><td>Lumiere Medical Spa</td><td>4.9</td><td>287</td><td>Active</td><td>Unknown</td></tr>
+  <tr><td>The Lucas Center</td><td>4.9</td><td>243</td><td>Active</td><td>Unknown</td></tr>
+  <tr class="you-row"><td><strong>Breazeale Clinic (YOU)</strong></td><td>4.9</td><td>220</td><td>0</td><td>0</td></tr>
+</table>
+<p><strong>You are the ONLY plastic surgery practice in the top 6 that isn't running Google Ads.</strong> Your competitors are actively bidding on keywords like "plastic surgery Knoxville," "breast augmentation Knoxville," and "face lift near me." Every search where you don't appear is a patient lost to a competitor.</p>
+
+<h3>Your Google Ads</h3>
+<p>No active Google Ads were detected for Breazeale Clinic. In a market where all top competitors are advertising, this absence is the most critical gap in your marketing strategy. Patients searching for plastic surgery in Knoxville are seeing your competitors' ads &mdash; not yours.</p>
+
+<div class="cta-box">
+<strong>We can help.</strong>
+<p>Cappio's Google Ads management creates targeted campaigns for your highest-revenue procedures, manages bidding and budget, and tracks every consultation booked from ads.</p>
+</div>
+
+<h3>Your Facebook Ads</h3>
+<p>No active Facebook Ads were detected. With 50,000 Facebook followers, you have a massive untapped audience. Facebook and Instagram ads are particularly effective for plastic surgery because they allow visual storytelling &mdash; before/after photos, patient testimonials, and procedure walkthroughs that build trust before the first consultation.</p>
+
+<!-- WHAT COMPETITORS ARE DOING RIGHT -->
+<div class="page-break"></div>
+<h2>What Your Competitors Are Doing Right</h2>
+<p>Based on real data from this audit, here's what stands out about your top competitors:</p>
+
+<div class="callout callout-orange">
+<strong>Gallaher Plastic Surgery Dominates with 626 Reviews</strong><br>
+Nearly 3x your review count. Gallaher has built a systematic review generation process that feeds their Google Maps dominance. Combined with active Google and Facebook advertising, they're capturing patients at every stage of the decision journey &mdash; from initial search to social media research.
+</div>
+
+<div class="callout callout-orange">
+<strong>Dr. Jason Hall Has Perfect 5.0 Stars with 408 Reviews</strong><br>
+A perfect rating with a high volume of reviews is incredibly powerful social proof. Dr. Hall also runs both Google and Facebook ads, meaning he's visible in organic search, paid search, and social media simultaneously. This multi-channel presence creates an impression of market leadership.
+</div>
+
+<div class="callout callout-orange">
+<strong>Every Top Competitor Runs Google Ads &mdash; Except You</strong><br>
+All five of the practices ranking above you are investing in Google Ads. They appear at the top of search results when patients look for procedures you offer. Without ads, you only appear in organic results &mdash; which are pushed below the fold by your competitors' paid placements.
+</div>
+
+<div class="callout callout-orange">
+<strong>Competitors Are Building Review Moats</strong><br>
+The gap between your 220 reviews and Gallaher's 626 is growing every month. Review velocity matters &mdash; practices that consistently generate 10&ndash;20 new reviews per month widen their competitive advantage faster than you can close it organically. A structured review generation program is essential.
+</div>
+
+<!-- KEY FINDINGS SUMMARY -->
+<div class="page-break"></div>
+<h2>Key Findings</h2>
+<p>Below is a summary of the most important issues identified in this audit, ranked by potential impact on your business.</p>
+
+<div class="callout callout-brand">
+<strong>1. "Your Website Is Invisible to Search Engines"</strong> <span class="difficulty diff-easy">Easy Fix</span><br>
+Not a single page on your 105-page website has an H1 heading tag. H1 is the most important on-page SEO signal &mdash; it tells Google what each page is about. Additionally, 62 pages (59%) are missing meta descriptions. Your service pages for breast augmentation, face lift, tummy tuck, and every other procedure are invisible for their target keywords. This is the easiest and highest-impact fix available: adding H1 tags and meta descriptions is a straightforward task that immediately improves search visibility.
+</div>
+
+<div class="callout callout-brand">
+<strong>2. "Your Mobile Site Is Driving Patients Away"</strong> <span class="difficulty diff-major">Major</span><br>
+A mobile PageSpeed score of 27/100 with an 18.5-second LCP and 0.677 CLS means your website is nearly unusable on mobile devices. Google penalizes sites with LCP over 2.5s &mdash; yours is 7x that limit. Pages shift dramatically as they load, creating a frustrating experience. With over 60% of healthcare searches happening on mobile, this is costing you consultations every day.
+<div class="cta-box"><strong>We can help.</strong><p>Cappio builds lightning-fast websites optimized for mobile. We'll cut your load time from 18 seconds to under 2, ensuring patients can book consultations instantly.</p></div>
+</div>
+
+<div class="callout callout-brand">
+<strong>3. "You're Completely Invisible in Paid Search"</strong> <span class="difficulty diff-moderate">Moderate</span><br>
+Zero Google Ads. Zero Facebook Ads. Meanwhile, all five competitors ranking above you are actively running Google Ads. When patients search for "plastic surgery Knoxville" or "breast augmentation near me," they see your competitors' ads at the top of the page &mdash; you're nowhere. With 50,000 Facebook followers providing a powerful audience foundation, the advertising opportunity is massive and you're leaving it entirely untapped.
+<div class="cta-box"><strong>We can help.</strong><p>Cappio's advertising management creates high-converting campaigns for your top procedures, manages your budget, and tracks every consultation from click to booking.</p></div>
+</div>
+
+<div class="callout callout-brand">
+<strong>4. "You're Flying Blind Without Analytics"</strong> <span class="difficulty diff-easy">Easy Fix</span><br>
+No Google Analytics, no Google Tag Manager, no Facebook Pixel, no Hotjar. You have zero visibility into your website performance. You can't tell which pages drive consultations, how patients find you, or whether your marketing investments are working. Installing GA4 and GTM takes under 30 minutes and immediately provides actionable data.
+</div>
+
+<div class="callout callout-brand">
+<strong>5. "Gallaher Is Building an Unreachable Lead"</strong> <span class="difficulty diff-moderate">Moderate</span><br>
+With 626 reviews to your 220, Gallaher Plastic Surgery has nearly 3x your review count and holds the #1 Maps position. Combined with active advertising on both Google and Facebook, they're capturing patients at every touchpoint. Every month without a review generation program makes the gap harder to close. You rank #6 &mdash; your 4.9-star quality deserves a top-3 position.
+<div class="cta-box"><strong>We can help.</strong><p>Cappio's reputation management system automates review requests after every appointment, helping you close the review gap and climb the Maps rankings.</p></div>
+</div>
+
+<div class="callout callout-brand">
+<strong>6. "32 Pages Are Duplicated Across HTTP and HTTPS"</strong> <span class="difficulty diff-easy">Easy Fix</span><br>
+The HTTP versions of 32 pages are fully accessible instead of redirecting to HTTPS. Search engines are crawling both versions as separate pages, splitting your page authority and wasting crawl budget. A simple server-side 301 redirect from HTTP to HTTPS resolves this instantly.
+</div>
+
+<div class="callout callout-brand">
+<strong>7. "No Instagram for a Visual Practice"</strong> <span class="difficulty diff-moderate">Moderate</span><br>
+Instagram is the #1 discovery platform for plastic surgery &mdash; patients search for before/after photos, procedure videos, and surgeon credentials. With no detectable Instagram presence, you're invisible on the platform that matters most for visual, results-driven practices. Your 50,000 Facebook followers prove you can build an audience &mdash; extending that to Instagram is the next step.
+<div class="cta-box"><strong>We can help.</strong><p>Cappio's social media management creates compelling visual content for Instagram, builds your following, and converts followers into booked consultations.</p></div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <p>Prepared by <strong>Cappio</strong> | March 1, 2026</p>
+</div>
+
+</body>
+</html>
