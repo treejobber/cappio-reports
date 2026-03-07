@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Website Audit: rainguardroofing.net | Cappio</title>
-<link rel="icon" type="image/png" href="/favicon.png">
 <style>
   @page { size: A4; margin: 0.75in; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -196,8 +195,8 @@ We detected ads managed by both "Geotarget LLC" and "Complete Construction Inc" 
 </div>
 
 <div class="callout">
-<strong>Your site blocks automated analysis tools.</strong><br>
-Your hosting provider's firewall returned a 403 (Forbidden) response to our crawler, preventing a full site-wide scan. This means your site may also be blocking legitimate SEO tools, Google bots, or partner integrations. We completed this audit using alternative data sources, but some site-wide metrics are estimated from sampled pages.
+<strong>Your site has 17 SEO issues across 58 crawled pages.</strong><br>
+A full site crawl revealed 3 high-priority issues, 10 medium-priority issues, and 4 low-priority opportunities. The biggest problems: duplicate title tags causing keyword cannibalization, 4 pages missing H1 tags entirely, and 76% of your pages have heading hierarchy errors (skipping from H1 to H6). Zero critical issues were found.
 </div>
 
 <div class="callout-green" style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 12px 16px; margin: 12px 0; border-radius: 0 6px 6px 0; font-size: 14px;">
@@ -224,54 +223,104 @@ With 246 Google reviews at 5.0 stars vs. your 115 reviews at 4.7 stars, Heck Roo
 <h2><span class="tag tag-critical">CRITICAL</span> Homepage Analysis</h2>
 <table>
   <tr><th>Element</th><th>Value</th><th>Status</th></tr>
-  <tr><td>Title Tag</td><td>Rainguard - Professional Roof Twin Falls ID | Roofing Solutions (55 chars)</td><td><span class="tag tag-medium">Issue</span> "Roof" appears truncated &mdash; should be "Roofing"</td></tr>
-  <tr><td>Meta Description</td><td>Invest in the best with Rainguard Roofing. Our services include inspections, repairs... (127 chars)</td><td><span class="tag tag-green">OK</span> Within 120-160 range</td></tr>
-  <tr><td>H1 Tag</td><td>Roofing Solutions You Can Trust</td><td><span class="tag tag-green">OK</span> 1 H1 present</td></tr>
-  <tr><td>Word Count</td><td>~2,200 words</td><td><span class="tag tag-green">OK</span> Strong content depth</td></tr>
-  <tr><td>Schema Markup</td><td>WebPage, Organization, WebSite, ImageObject</td><td><span class="tag tag-medium">Missing</span> No LocalBusiness schema</td></tr>
-  <tr><td>Open Graph Tags</td><td>Not detected</td><td><span class="tag tag-critical">Missing</span> Social sharing will show generic preview</td></tr>
+  <tr><td>Title Tag</td><td>Rainguard - Professional Roof Twin Falls ID | Roofing Solutions (63 chars)</td><td><span class="tag tag-medium">Issue</span> "Roof" appears truncated &mdash; should be "Roofing"</td></tr>
+  <tr><td>Meta Description</td><td>Invest in the best with Rainguard Roofing. Our services include inspections, repairs... (156 chars)</td><td><span class="tag tag-green">OK</span> Within 120-160 range</td></tr>
+  <tr><td>H1 Tags</td><td>"Roofing Solutions You Can Trust" + 3 others</td><td><span class="tag tag-critical">Issue</span> 4 H1 tags on homepage (should be 1)</td></tr>
+  <tr><td>Word Count</td><td>1,876 words</td><td><span class="tag tag-green">OK</span> Strong content depth</td></tr>
+  <tr><td>Response Time</td><td>523ms</td><td><span class="tag tag-green">OK</span> Fast server response</td></tr>
+  <tr><td>Schema Markup</td><td>WebPage, Organization, WebSite, ImageObject, BreadcrumbList</td><td><span class="tag tag-medium">Missing</span> No LocalBusiness schema</td></tr>
+  <tr><td>Open Graph Tags</td><td>title, description, image, url, site_name</td><td><span class="tag tag-green">Found</span> Full OG implementation</td></tr>
   <tr><td>Google Analytics</td><td>G-H4E1N6R1LC</td><td><span class="tag tag-green">Found</span></td></tr>
-  <tr><td>Google Tag Manager</td><td>Not detected</td><td><span class="tag tag-critical">Missing</span></td></tr>
+  <tr><td>Google Tag Manager</td><td>Detected (no container ID visible)</td><td><span class="tag tag-medium">Verify</span> GTM present but verify configuration</td></tr>
   <tr><td>Facebook Pixel</td><td>Not detected</td><td><span class="tag tag-critical">Missing</span></td></tr>
-  <tr><td>Heading Hierarchy</td><td>Multiple H2s, non-sequential order</td><td><span class="tag tag-medium">Issue</span> Headings skip levels</td></tr>
-  <tr><td>Canonical URL</td><td>Not explicitly set</td><td><span class="tag tag-medium">Check</span></td></tr>
-  <tr><td>Platform</td><td>WordPress</td><td><span class="tag tag-green">Detected</span></td></tr>
+  <tr><td>Heading Hierarchy</td><td>H1→H6→H1→H5→H5→H5... (7 sequence errors)</td><td><span class="tag tag-critical">Broken</span> Headings skip multiple levels</td></tr>
+  <tr><td>Canonical URL</td><td>https://rainguardroofing.net/ (www→non-www mismatch)</td><td><span class="tag tag-medium">Issue</span> www version canonicalizes to non-www</td></tr>
+  <tr><td>Internal Links</td><td>25 internal / 6 external</td><td><span class="tag tag-green">OK</span> Good link density</td></tr>
+  <tr><td>Platform</td><td>WordPress + Elementor 3.35.0</td><td><span class="tag tag-green">Detected</span></td></tr>
 </table>
 
 <div class="callout callout-blue">
 <strong>Homepage Title Fix:</strong> Your title reads "Professional Roof Twin Falls ID" &mdash; the word "Roof" appears truncated. Consider: "Professional Roofing in Twin Falls, ID | Rainguard Roofing" for better clarity and keyword targeting.
 </div>
 
-<!-- SITE-WIDE SEO ISSUES -->
-<h2><span class="tag tag-high">HIGH</span> Site-Wide SEO Issues</h2>
+<!-- SITE-WIDE CRAWL ANALYSIS -->
+<h2><span class="tag tag-high">HIGH</span> Site-Wide Crawl Analysis (58 Pages)</h2>
 
-<h3>H1 Tag Issues</h3>
-<p>From our sampled pages, H1 tags are present and properly used:</p>
+<div class="score-grid">
+  <div class="score-card card-blue"><div class="num">58</div><div class="label">Pages Crawled</div></div>
+  <div class="score-card card-orange"><div class="num">17</div><div class="label">Issues Found</div></div>
+  <div class="score-card card-green"><div class="num">1,124</div><div class="label">Internal Links</div></div>
+  <div class="score-card card-yellow"><div class="num">392ms</div><div class="label">Avg Response</div></div>
+</div>
+
+<h3>Duplicate Title Tags <span class="tag tag-critical">HIGH</span></h3>
+<p>4 pages share duplicate titles, causing keyword cannibalization where pages compete against each other in search results:</p>
 <table>
-  <tr><th>Page</th><th>H1 Tag</th><th>Status</th></tr>
-  <tr><td>/</td><td>Roofing Solutions You Can Trust</td><td><span class="tag tag-green">OK</span></td></tr>
-  <tr><td>/faqs-contact-us/</td><td>FAQ'S &amp; Contact</td><td><span class="tag tag-green">OK</span></td></tr>
-  <tr><td>/about-us/</td><td>Meet our Team: Rainguard Roofing</td><td><span class="tag tag-green">OK</span></td></tr>
-  <tr><td>/services/</td><td>Reliable Roofing Solutions</td><td><span class="tag tag-green">OK</span></td></tr>
+  <tr><th>Title</th><th>Duplicated On</th></tr>
+  <tr><td>Things To Know About Roofing | FAQS and Contact With</td><td>3 pages (/faqs-contact-us/, /FAQ'S-&amp;-Contact-Us/ variants)</td></tr>
+  <tr><td>Reliable Roofing Solutions: Expert Services | Rainguard Roofing</td><td>3 pages (/services/, /Services/ variants)</td></tr>
+  <tr><td>The Importance of Professional Snow Removal Services...</td><td>2 pages (duplicate blog post)</td></tr>
+  <tr><td>Rainguard - Professional Roof Twin Falls ID | Roofing Solutions</td><td>2 pages (www vs non-www homepage)</td></tr>
 </table>
-<p>H1 tags look good on sampled pages. However, heading hierarchy (H1→H2→H3 sequence) has errors on multiple pages per Google's Lighthouse analysis.</p>
 
-<h3>Canonical URL Conflicts</h3>
-<p>Canonical verification was limited due to site firewall restrictions on our crawler. From sampled pages, no explicit canonical tags were detected on the homepage. WordPress typically handles canonicals via Yoast or RankMath plugins &mdash; verify these are properly configured.</p>
+<h3>Missing &amp; Multiple H1 Tags <span class="tag tag-critical">HIGH</span></h3>
+<p><strong>4 pages are missing H1 tags entirely</strong>, and <strong>9 pages have multiple H1 tags</strong> (should be exactly 1 per page):</p>
+<table>
+  <tr><th>Issue</th><th>Pages</th><th>Examples</th></tr>
+  <tr><td>Missing H1</td><td>4 pages (6.9%)</td><td>/after-the-storm-essential-steps-for-idaho-homeowners/, /solar/, /new-rv-roof-coatings...</td></tr>
+  <tr><td>Multiple H1s</td><td>9 pages (15.5%)</td><td>Homepage has 4 H1s, About Us has 3 H1s</td></tr>
+</table>
 
-<!-- PERFORMANCE & PAGE WEIGHT -->
+<h3>Heading Hierarchy Errors <span class="tag tag-medium">MEDIUM</span></h3>
+<p><strong>44 of 58 pages (76%)</strong> have heading hierarchy issues &mdash; headings that skip levels (e.g., H1 directly to H6, H1 to H5). This confuses search engines about content structure and hurts accessibility. The homepage alone has 7 sequence errors.</p>
+
+<h3>Canonical URL Conflicts <span class="tag tag-medium">MEDIUM</span></h3>
+<p><strong>7 pages</strong> have canonical mismatches. The most significant: the www homepage canonicalizes to the non-www version. Case-sensitive URL variants (/Services/ vs /services/) also create duplicates:</p>
+<table>
+  <tr><th>URL</th><th>Canonical Points To</th></tr>
+  <tr><td>https://www.rainguardroofing.net/</td><td>https://rainguardroofing.net/ (www→non-www)</td></tr>
+  <tr><td>https://www.rainguardroofing.net/FAQ'S-&amp;-Contact-Us/</td><td>https://rainguardroofing.net/faqs-contact-us/</td></tr>
+  <tr><td>https://rainguardroofing.net/Services/</td><td>https://rainguardroofing.net/services/</td></tr>
+  <tr><td>https://rainguardroofing.net/solar/contact-us.html</td><td>https://rainguardroofing.net/404 <span class="tag tag-critical">Broken</span></td></tr>
+</table>
+
+<h3>Missing Meta Descriptions <span class="tag tag-medium">MEDIUM</span></h3>
+<p><strong>10 pages (17%)</strong> have no meta description, and <strong>5 pages</strong> share duplicate descriptions. Google auto-generates snippets for pages without descriptions, which typically underperform custom-written ones. Most affected: tag/category archive pages.</p>
+
+<h3>Title Length Issues <span class="tag tag-medium">MEDIUM</span></h3>
+<p><strong>32 pages (55%)</strong> have title length problems. Many are too short (e.g., "Gutters - Rainguard Roofing" at only 27 chars). Optimal range is 50-60 characters. Short titles waste valuable SERP real estate that could include location keywords.</p>
+
+<!-- CONTENT DEPTH & RESPONSE TIMES -->
 <div class="page-break"></div>
-<h2><span class="tag tag-medium">MEDIUM</span> Performance &amp; Page Weight</h2>
+<h2><span class="tag tag-medium">MEDIUM</span> Content Depth &amp; Server Performance</h2>
 
-<h3>Page Performance (Sampled Pages)</h3>
+<div class="score-grid">
+  <div class="score-card card-blue"><div class="num">64,818</div><div class="label">Total Words</div></div>
+  <div class="score-card card-green"><div class="num">1,118</div><div class="label">Avg Words/Page</div></div>
+  <div class="score-card card-green"><div class="num">90ms</div><div class="label">Fastest Response</div></div>
+  <div class="score-card card-orange"><div class="num">1,461ms</div><div class="label">Slowest Response</div></div>
+</div>
+
+<h3>Top Pages by Content Depth</h3>
 <table>
-  <tr><th>Page</th><th>Word Count</th><th>Notes</th></tr>
-  <tr><td>/ (Homepage)</td><td>~2,200</td><td>Strong content. 24.68s mobile LCP is critical.</td></tr>
-  <tr><td>/about-us/</td><td>~2,200</td><td>Good depth for About/Team page</td></tr>
-  <tr><td>/services/</td><td>~1,200</td><td>Moderate &mdash; could benefit from expansion</td></tr>
-  <tr><td>/faqs-contact-us/</td><td>~450</td><td><span class="tag tag-medium">Thin</span> FAQ content not visible/rendered</td></tr>
+  <tr><th>Page</th><th>Word Count</th><th>Response Time</th></tr>
+  <tr><td>/residential-roofing-solutions/</td><td>2,045</td><td>421ms</td></tr>
+  <tr><td>/about-us/</td><td>1,939</td><td>462ms</td></tr>
+  <tr><td>/ (Homepage)</td><td>1,876</td><td>523ms</td></tr>
+  <tr><td>/commercial-roofing/</td><td>1,745</td><td>447ms</td></tr>
+  <tr><td>/your-roofing-project-what-to-expect.../</td><td>1,719</td><td>399ms</td></tr>
+  <tr><td>/blog/</td><td>1,549</td><td>463ms</td></tr>
+  <tr><td>/rainguard-a-q</td><td>1,478</td><td>416ms</td></tr>
 </table>
-<p><strong>Estimated site average: ~1,500 words per page</strong> (based on sampled pages). Homepage and About pages are well-built; FAQ page needs content expansion.</p>
+<p><strong>No thin content pages detected</strong> &mdash; all 58 pages have 300+ words. Average of 1,118 words/page is above industry benchmarks for local service sites. Server response times average 392ms with no pages exceeding 1.5 seconds &mdash; your hosting infrastructure is solid.</p>
+
+<h3>Slowest Pages</h3>
+<table>
+  <tr><th>Page</th><th>Response Time</th><th>Note</th></tr>
+  <tr><td>/choosing-the-right-roofing-contractor.../</td><td>1,461ms</td><td><span class="tag tag-medium">Slow</span> 3x average</td></tr>
+  <tr><td>/ (Homepage)</td><td>523ms</td><td>Acceptable</td></tr>
+  <tr><td>/should-you-invest-in-roof-sealers.../</td><td>496ms</td><td>Acceptable</td></tr>
+</table>
 
 <!-- PAGESPEED: MOBILE vs DESKTOP -->
 <div class="page-break"></div>
@@ -678,8 +727,8 @@ You have the 3rd most reviews in Twin Falls (115) but rank only 6th in Google Ma
 </div>
 
 <div class="callout callout-brand">
-<strong>8. "Your Site's Firewall May Be Blocking SEO Tools"</strong> <span class="difficulty diff-moderate">Moderate</span><br>
-Your hosting provider's firewall returned a 403 (Forbidden) response to our crawler. While this provides some security benefit, overly aggressive firewalls can also block: Google's crawlers (hurting indexing), SEO audit tools (like Screaming Frog, Ahrefs, Semrush), and legitimate partner integrations. Review your WAF settings to ensure legitimate bots are whitelisted.
+<strong>8. "76% of Your Pages Have Broken Heading Structure"</strong> <span class="difficulty diff-moderate">Moderate</span><br>
+44 of 58 pages have heading hierarchy errors &mdash; headings that jump from H1 directly to H5 or H6, skipping H2/H3/H4. This tells Google your content structure is disorganized. Fix the Elementor templates to use proper sequential headings (H1→H2→H3). The homepage alone has 7 heading sequence errors and 4 separate H1 tags.
 </div>
 
 <!-- FOOTER -->
